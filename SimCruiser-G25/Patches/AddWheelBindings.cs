@@ -25,6 +25,7 @@ class AddWheelBindings
             return;
         }
 
+        // Base game's configurable inputs
         var actionsConfigurable = InputSystem.actions;
         if (actionsConfigurable == null)
         {
@@ -103,7 +104,7 @@ class AddWheelBindings
             .With("Right", "<HID::G25 Racing Wheel>/stick/right");
         
         // ------Jump -------
-        jump.AddBinding("<HID::G25 Racing Wheel>/button7").WithInteraction("press");
+        jump.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
         
         // --------- Move but for boosts -----------
         move.AddCompositeBinding("2DVector")
@@ -113,7 +114,7 @@ class AddWheelBindings
             .With("Right", "<HID::G25 Racing Wheel>/button19");
         
         // ------ Interact ---------
-        interact.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
+        interact.AddBinding("<HID::G25 Racing Wheel>/button7").WithInteraction("press");
         
         // ------- Look ---------
         look.AddBinding("<HID::G25 Racing Wheel>/hat").WithProcessor("scaleVector2(x=100,y=100)");
