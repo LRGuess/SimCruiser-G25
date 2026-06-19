@@ -5,25 +5,42 @@ using UnityEngine.InputSystem;
     
 namespace SimCruiser_G25.Patches;
 
-[HarmonyPatch(typeof(PlayerControllerB), nameof(PlayerControllerB.Start))]
+[HarmonyPatch(typeof(StartOfRound), "Update")]
 class AddWheelBindings
 {
     private static bool added;
 
-    static void Postfix(PlayerControllerB __instance)
+    static void Postfix()
     {
         if (added) return;
 
-        if (!__instance.IsOwner) return; // Ensure local player
+        var player = StartOfRound.Instance?.localPlayerController;
+        if (player == null) return;
 
         // Get base game's playerActions
-        var actions = __instance.playerActions;
-        if (actions == null)
+        var actionsBase = player.playerActions.asset;
+        if (actionsBase == null)
+        {
+            Debug.LogError("Fatal PlayerActions is null :(");
+            return;
+        }
+
+        var actionsConfigurable = InputSystem.actions;
+        if (actionsConfigurable == null)
         {
             Debug.LogError("Fatal PlayerActions is null :(");
             return;
         }
         
+        ApplyBindings(actionsBase);
+        ApplyBindings(actionsConfigurable);
+        added = true;
+
+        Debug.Log("Added G25's input bindings! :D");
+    }
+
+    static void ApplyBindings(InputActionAsset actions)
+    {
         // ---------------- Getting Actions ---------------
         
         // Get the base game's move input action
@@ -63,19 +80,30 @@ class AddWheelBindings
         // Find device paths
         foreach (var device in InputSystem.devices)
             Debug.Log(device.path);
+
+        foreach (var device in InputSystem.devices)
+        {
+            if (device.displayName.ToLower().Contains("g25"))
+            {
+                Debug.Log("Found g25: "+ device.name);
+
+                foreach (var control in device.allControls)
+                {
+                    Debug.Log(control.path);
+                }
+            }
+        }
         
         // --------------- Adding Bindings ----------------------
         // ------ Move -------
         move.AddCompositeBinding("2DVector")
             .With("Up", "<HID::G25 Racing Wheel>/stick/up")
             .With("Down", "<HID::G25 Racing Wheel>/stick/down")
-            .With("Left", "<HID::G25 Racing Wheel>/left")
-            .With("Right", "<HID::G25 Racing Wheel>/right");
+            .With("Left", "<HID::G25 Racing Wheel>/stick/left")
+            .With("Right", "<HID::G25 Racing Wheel>/stick/right");
         
         // ------Jump -------
-        jump.AddBinding("<HID::G25 Racing Wheel>/button7");
-        jump.Disable();
-        jump.Enable();
+        jump.AddBinding("<HID::G25 Racing Wheel>/button7").WithInteraction("press");
         
         // --------- Move but for boosts -----------
         move.AddCompositeBinding("2DVector")
@@ -83,23 +111,11 @@ class AddWheelBindings
             .With("Down", "<HID::G25 Racing Wheel>/button18")
             .With("Left", "<HID::G25 Racing Wheel>/button17")
             .With("Right", "<HID::G25 Racing Wheel>/button19");
-        move.Disable();
-        move.Enable();
         
         // ------ Interact ---------
-        interact.AddBinding("<HID::G25 Racing Wheel>/button8");
-        interact.Disable();
-        interact.Enable();
+        interact.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
         
         // ------- Look ---------
-        look.AddBinding("<HID::G25 Racing Wheel>/hat").WithProcessor("scaleVector2(x=100,y=100)").WithProcessor("invertVector2(invertX=false,invertY=true)");
-        look.Disable();
-        look.Enable();
-        
-        // ------------------- Done ----------------
-        // Don't let this run again
-        added = true;
-
-        Debug.Log("Added G25's input bindings! :D");
+        look.AddBinding("<HID::G25 Racing Wheel>/hat").WithProcessor("scaleVector2(x=100,y=100)");
     }
 }

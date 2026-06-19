@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimCruiser-G25")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+556c84ff318928f68fe2a79d15ed1ec2955423a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimCruiser-G25")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimCruiser-G25")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
