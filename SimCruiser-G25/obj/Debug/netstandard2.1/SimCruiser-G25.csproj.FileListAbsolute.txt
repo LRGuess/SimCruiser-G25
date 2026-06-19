@@ -1,0 +1,9 @@
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\bin\Debug\netstandard2.1\SimCruiser-G25.deps.json
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\bin\Debug\netstandard2.1\SimCruiser-G25.dll
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.csproj.AssemblyReference.cache
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\MyPluginInfo.cs
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.AssemblyInfoInputs.cache
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.AssemblyInfo.cs
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.csproj.CoreCompileInputs.cache
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.dll
