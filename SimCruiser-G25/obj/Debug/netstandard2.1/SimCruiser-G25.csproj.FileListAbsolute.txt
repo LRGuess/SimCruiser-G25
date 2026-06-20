@@ -7,3 +7,4 @@ C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstand
 C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.AssemblyInfo.cs
 C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.csproj.CoreCompileInputs.cache
 C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.dll
+C:\Users\Liam\Documents\LC Mods\SimCruiser-G25\SimCruiser-G25\obj\Debug\netstandard2.1\SimCruiser-G25.sourcelink.json
