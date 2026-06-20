@@ -79,3 +79,16 @@ Going forward we need to:
 
 Cheers!
 Liam
+
+# Devlog 3
+
+Tried driving the company cruiser with the wheel, and a few things need to be done:
+- The CC's steering needs to be turned 1:1 with the wheel's input
+- Acceleration and breaking needs to be rewritten to feel more realistic
+
+Published the input part of the mod onto Thunderstore tho to make testing easier.
+
+I'll make a more interesting update once I start working that out!
+
+Cheers,
+Liam

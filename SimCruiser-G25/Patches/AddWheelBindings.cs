@@ -97,11 +97,7 @@ class AddWheelBindings
         
         // --------------- Adding Bindings ----------------------
         // ------ Move -------
-        move.AddCompositeBinding("2DVector")
-            .With("Up", "<HID::G25 Racing Wheel>/stick/up")
-            .With("Down", "<HID::G25 Racing Wheel>/stick/down")
-            .With("Left", "<HID::G25 Racing Wheel>/stick/left")
-            .With("Right", "<HID::G25 Racing Wheel>/stick/right");
+        move.AddBinding("<HID::G25 Racing Wheel>/stick").WithProcessor("scaleVector2(x=1,y=1)");
         
         // ------Jump -------
         jump.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
