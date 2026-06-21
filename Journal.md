@@ -92,3 +92,59 @@ I'll make a more interesting update once I start working that out!
 
 Cheers,
 Liam
+
+# Devlog 4
+
+Finished re-writing the cruiser's steering!
+Not too much to say, but still a pretty big update: The cruiser's steering wheel is now 1:1 with the physical G25 in multiple ways.
+
+Originally the Company Cruiser was driven by holding down the A or D keys to steer. The wheel would gradually rotate in the direction you were holding and stop rotating but maintain the rotation on release. This logic obviously sucks when you want to use a sim wheel, because you want the CC's wheel rotation to be a direct replica of the physical wheel's rotation.
+
+This means the logic had to be redone, therefore a rewrite of the cruiser's `GetVehicleInput()` needed to be done. 
+
+## Implementation
+
+Zeekerss original code for steering was this:  
+`float num = __instance.steeringWheelTurnSpeed; `  
+`__instance.steeringInput = Mathf.Clamp(__instance.steeringInput + __instance.moveInputVector.x * num * Time.deltaTime, -3f, 3f);`
+
+Modifing these lines was pretty straightforward:
+- Remove `num` entirely as we done need the wheel's turn speed
+- Don't multiply by `Time.deltaTime` as it'll be direct
+- Don't add the old input values to the new one as we want 1:1 with the G25
+
+In the end the code looked like this:  
+`__instance.steeringInput = Mathf.Clamp(__instance.moveInputVector.x * 3f, -3f, 3f);`
+
+We need to multiply by 3 as we want the max to be 3 but the input can only reach a max value of 1.
+
+## Animation
+
+This new wheel logic worked great except one problem: The G25 would be at 90deg at it's max but the game would show it at 225deg.
+
+The solution to this was to adjust the anim's clam values from +/- 1 to +/- 2.4.  
+Why? Because we need to remove 1.4f from the max value, and for some reason the anim needs us to add it onto 1 instead of remove ¯\\\_(ツ)_/¯
+
+## Next Up:
+
+Going forward all that's really left is using the G25's shifter to change the cruiser's gears from Park, Reverse and Drive!
+
+Cheers,  
+Liam
+
+
+# Devlog 5
+
+After I got the steering working, I wanted to be able to use the G25's shifter to change gears in the company cruiser. This required more expirimenting to figure out how the shifter is interpreted by unity's input system.
+I turns out that every position on the shifter is assigned a button, and that button is considered pressed when the shifter is in that gear. Below are the button assignements I found:
+**In 6 Gear Mode**
+- 1st Gear: Button 9
+- 2nd Gear: Button 10
+- 3rd Gear: Button 11
+- 4th Gear: Button 12
+- 5th Gear: Button 13
+- 6th Gear: Button 14
+- Reverse: Button 15
+**In +/- Mode**
+- Forward: Button 9
+- Back: Button 10

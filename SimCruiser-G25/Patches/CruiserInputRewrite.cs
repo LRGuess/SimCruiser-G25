@@ -21,8 +21,7 @@ public class CruiserInputRewrite
             }
             //float num = __instance.steeringWheelTurnSpeed;
             //__instance.steeringInput = Mathf.Clamp(__instance.steeringInput + __instance.moveInputVector.x * num * Time.deltaTime, -3f, 3f);
-            float steer = __instance.moveInputVector.x;
-            __instance.steeringInput = Mathf.Clamp(steer * 3f, -3f, 3f);
+            __instance.steeringInput = Mathf.Clamp(__instance.moveInputVector.x * 3f, -3f, 3f);
             Debug.Log(__instance.steeringInput);
             if (Mathf.Abs(__instance.moveInputVector.x) > 0.1f)
             {
