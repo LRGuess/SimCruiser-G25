@@ -36,6 +36,11 @@ With the drivers and mod installed, it should now be plug-and-play.
 
 Simply connect the G25 to your computer and launch the game.
 
+## Troubleshooting:
+If things aren't workning out, try adjusting these settings in the driver:
+- Report Combined pedals
+- Set degrees of rotation to 225
+
 ## Have fun!
 
 :D
