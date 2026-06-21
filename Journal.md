@@ -136,7 +136,10 @@ Liam
 # Devlog 5
 
 After I got the steering working, I wanted to be able to use the G25's shifter to change gears in the company cruiser. This required more expirimenting to figure out how the shifter is interpreted by unity's input system.
-I turns out that every position on the shifter is assigned a button, and that button is considered pressed when the shifter is in that gear. Below are the button assignements I found:
+
+## Investigating 
+It turns out that every position on the shifter is assigned a button, and that button is considered pressed when the shifter is in that gear. Below are the button assignements I found:
+
 **In 6 Gear Mode**
 - 1st Gear: Button 9
 - 2nd Gear: Button 10
@@ -145,6 +148,35 @@ I turns out that every position on the shifter is assigned a button, and that bu
 - 5th Gear: Button 13
 - 6th Gear: Button 14
 - Reverse: Button 15
+
 **In +/- Mode**
 - Forward: Button 9
 - Back: Button 10
+
+I also took a look at how the player sets the cruiser's gears, and it's with a method called `ShiftToGearAndSync(desiredGear)`. So when changing gears this is the method I need to call.
+
+## Implementation
+
+Getting the shifting working was pretty easy. First I created 2 new actions and bindings for the Drive and Reverse gears and bound then to the 3rd and 4th gears on the shifter. I chose those as it keep it centered and feels more natural. 
+Then I added some code into the same method we edited for the steering that:
+- Stores the current gear.
+- Checks if the stick is in a position:
+  - If yes:
+    - Is the stick in the same position as it was last frame?
+      - If yes ignore
+      - If no set the cruiser's gear to the new gear
+  - If no:
+    - Set the cruiser's gear into park as no gear is selected.
+
+So in our case, what irl is neutral is park, forward (or 3rd) is drive and back (or 4th) is reverse
+
+Feels pretty epic when driving the cruiser!
+
+## Next up:
+
+The mod is basically done, but there are a few things we can still do:
+- Add bindings for things like the radio, wipers, etc
+- Ship the final version in thunderstore
+
+Cheers!
+Liam

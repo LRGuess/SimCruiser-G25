@@ -6,6 +6,9 @@ A Lethal Company mod that allows the Company Cruiser to be driven with a Logitec
 
 * Adds input bindings for the G25 wheel
 * Rewrites the Company Cruiser input system to make driving feel more realistic with the G25
+* Shifter changes between Drive, Reverse and Park
+* Wheel is 1:1 with the cruiser
+* Pedals accelerate and break
 
 ## Setup
 

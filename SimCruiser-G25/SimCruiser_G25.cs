@@ -10,7 +10,7 @@ public class SimCruiser_G25 : BaseUnityPlugin
 {
     const string GUID = "com.BigSaltyBeans.SimCruiser_G25";
     const string NAME = "Sim Cruiser G25";
-    const string VERSION = "1.2.0";
+    const string VERSION = "1.5.0";
     
     private void Awake()
     {
