@@ -34,6 +34,22 @@ public class CruiserInputRewrite
             __instance.steeringAnimValue = __instance.moveInputVector.x;
             __instance.drivePedalPressed = __instance.moveInputVector.y > 0.1f;
             __instance.brakePedalPressed = __instance.moveInputVector.y < -0.1f;
+
+            int desiredGear = 3;
+
+            if (InputSystem.actions.FindAction("DriveGear").IsPressed())
+            {
+                desiredGear = 1;
+            }
+            else if (InputSystem.actions.FindAction("ReverseGear").IsPressed())
+            {
+                desiredGear = 2;
+            }
+
+            if (__instance.gear != (CarGearShift)desiredGear)
+            {
+                __instance.ShiftToGearAndSync(desiredGear);
+            }
         }
         
         return false;

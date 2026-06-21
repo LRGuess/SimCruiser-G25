@@ -42,6 +42,20 @@ class AddWheelBindings
 
     static void ApplyBindings(InputActionAsset actions)
     {
+        
+        // --------------- Get Map  --------------
+        InputActionMap map = actions.FindActionMap("Movement");
+        if (map == null)
+        {
+            Debug.LogError("Fatal Movement Actions is null :(");
+            return;
+        }
+        
+        bool wasEnabled = map.enabled;
+
+        if (wasEnabled)
+            map.Disable();
+        
         // ---------------- Getting Actions ---------------
         
         // Get the base game's move input action
@@ -76,6 +90,10 @@ class AddWheelBindings
             return;
         }
         
+        // -------------- Create Actions --------------
+        InputAction driveGear = map.AddAction("DriveGear", InputActionType.Button);
+        InputAction reverseGear = map.AddAction("ReverseGear", InputActionType.Button);
+        
         // ----------------- Devices ----------------------
         
         // Find device paths
@@ -96,23 +114,19 @@ class AddWheelBindings
         }
         
         // --------------- Adding Bindings ----------------------
-        // ------ Move -------
+        look.AddBinding("<HID::G25 Racing Wheel>/hat").WithProcessor("scaleVector2(x=100,y=100)");
         move.AddBinding("<HID::G25 Racing Wheel>/stick").WithProcessor("scaleVector2(x=1,y=1)");
-        
-        // ------Jump -------
-        jump.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
-        
-        // --------- Move but for boosts -----------
         move.AddCompositeBinding("2DVector")
             .With("Up", "<HID::G25 Racing Wheel>/button16")
             .With("Down", "<HID::G25 Racing Wheel>/button18")
             .With("Left", "<HID::G25 Racing Wheel>/button17")
             .With("Right", "<HID::G25 Racing Wheel>/button19");
-        
-        // ------ Interact ---------
+        jump.AddBinding("<HID::G25 Racing Wheel>/button8").WithInteraction("press");
         interact.AddBinding("<HID::G25 Racing Wheel>/button7").WithInteraction("press");
+        driveGear.AddBinding("<HID::G25 Racing Wheel>/button11");
+        reverseGear.AddBinding("<HID::G25 Racing Wheel>/button12");
         
-        // ------- Look ---------
-        look.AddBinding("<HID::G25 Racing Wheel>/hat").WithProcessor("scaleVector2(x=100,y=100)");
+        if (wasEnabled)
+            map.Enable();
     }
 }
